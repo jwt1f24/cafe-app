@@ -30,9 +30,12 @@
                 <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
                 <PasswordField fx:id="passField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
             </GridPane>
-            <!-- button to submit form -->
+            <!-- buttons to submit form or signing up -->
             <StackPane>
-                <Button text="Submit" fx:id="submitBtn" onAction="#login" prefWidth="100" prefHeight="30"/>
+                <VBox spacing="10" alignment="CENTER">
+                    <Button text="Submit" fx:id="submitBtn" onAction="#login" prefWidth="200" prefHeight="30"/>
+                    <Button text="Sign Up" fx:id="signUpBtn" onAction="#signUp" prefWidth="200" prefHeight="30"/>
+                </VBox>
             </StackPane>
         </VBox>
     </center>
