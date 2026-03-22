@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
+            fx:controller="uosm.jwt1f24_36400092.SignUpControls"
             prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+    <!-- align elements at the center of window -->
+    <center>
+        <!-- vbox to stack GridPane + StackPane -->
+        <VBox spacing="30" alignment="CENTER">
+            <!-- header -->
+            <Label text="Sign Up"/>
+            <Label fx:id="alert"/>
+            <!-- GridPane setup -->
+            <GridPane hgap="10" vgap="10" alignment="CENTER">
+                <!-- column constraints for flexible window resizing -->
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="30"/>
+                </columnConstraints>
+                <!-- labels + input fields -->
+                <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <PasswordField fx:id="passField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            </GridPane>
+            <!-- buttons to submit form or signing up -->
+            <StackPane>
+                <VBox spacing="10" alignment="CENTER">
+                    <Button text="Create Account" fx:id="submitBtn" onAction="#signUp" prefWidth="200" prefHeight="30"/>
+                    <Button text="Login" fx:id="toLogin" onAction="#loginPage" prefWidth="200" prefHeight="30"/>
+                </VBox>
+            </StackPane>
+        </VBox>
+    </center>
+</BorderPane>
