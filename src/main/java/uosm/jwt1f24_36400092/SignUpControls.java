@@ -2,9 +2,9 @@ package uosm.jwt1f24_36400092;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.*;
-import javafx.stage.Stage;
+import javafx.stage.*;
 import javafx.event.ActionEvent;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 
 public class SignUpControls {
@@ -14,7 +14,6 @@ public class SignUpControls {
     private PasswordField passField;
     @FXML
     private Label alert;
-
     // sign up event handling
     @FXML
     private void signUp() {
@@ -27,8 +26,6 @@ public class SignUpControls {
         } else if (password.isEmpty()) {
             alert.setText("Please fill in password!");
             return;
-        } else {
-            alert.setText(" ");
         }
         // create account & insert into users table
         String sql = "INSERT INTO users(username, password, role) VALUES (?, ?, ?);";
@@ -40,6 +37,8 @@ public class SignUpControls {
             statement.setString(2, password);
             statement.setString(3, role);
             statement.executeUpdate();
+            // create + write credentials to txt file
+            createAccount(username, password, role);
             // if creation is successful
             alert.setText("Account created! Please go to login page to log in.");
             nameField.clear();
@@ -51,6 +50,18 @@ public class SignUpControls {
             } else {
                 alert.setText("Error: " + e.getMessage());
             }
+            e.printStackTrace();
+        }
+    }
+    // create account as a txt file and store in database directory
+    @FXML
+    private void createAccount(String username, String password, String role) {
+        File file = new File("database/users/" + username + ".txt");
+        try (FileWriter writeFile = new FileWriter(file)) {
+            writeFile.write("Username: " + username + "\n");
+            writeFile.write("Password: " + password + "\n");
+            writeFile.write("Role: " + role);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
